@@ -1,5 +1,5 @@
 # Node Alpine -- multi-arch (amd64 + arm64)
-FROM oven/bun:1.3.11-alpine AS builder
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
@@ -24,7 +24,7 @@ RUN npm install --legacy-peer-deps
 COPY . .
 
 # Build the project
-RUN bun run build
+RUN npm run build
 
 # Serve with nginx
 FROM nginx:1.28.2-alpine
