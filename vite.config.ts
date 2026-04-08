@@ -60,10 +60,10 @@ export default defineConfig((_options) => {
                 // allowedHosts: ['<your_tailscale_hostname>'], // e.g. pi5.tailf5f622.ts.net
             },
         },
-        // preview: {
-        //     host: true,
-        //     allowedHosts: ['<your_tailscale_hostname>'], // e.g. pi5.tailf5f622.ts.net
-        // },
+       preview: { 
+          host: true, 
+          allowedHosts: true,
+        }
         build: {
             outDir: 'dist',
             emptyOutDir: true,
