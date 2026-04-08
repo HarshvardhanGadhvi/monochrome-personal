@@ -2,8 +2,8 @@ services:
     # Production frontend -- always runs
     monochrome:
         build:
-            context: .
-            dockerfile: Dockerfile
+            context: ../
+            dockerfile: docker/Dockerfile
             args:
                 - AUTH_ENABLED=${AUTH_ENABLED}
                 - AUTH_SECRET=${AUTH_SECRET}
