@@ -18,7 +18,7 @@ ARG SESSION_MAX_AGE
 COPY package*.json ./
 
 # Install dependencies (Node)
-RUN bun install
+RUN npm install --legacy-peer-deps
 
 # Copy the rest of the project
 COPY . .
