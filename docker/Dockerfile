@@ -1,8 +1,9 @@
-# Step down to Node 18 (Highly compatible with legacy C++ modules)
-FROM node:18 AS builder
+# Phase 1: Use the full Debian-based Bun image (No Alpine!)
+FROM oven/bun:1 AS builder
 
 WORKDIR /app
 
+# Accept build arguments
 ARG AUTH_ENABLED
 ARG AUTH_SECRET
 ARG APPWRITE_ENDPOINT
@@ -10,17 +11,21 @@ ARG APPWRITE_PROJECT_ID
 ARG POCKETBASE_URL
 ARG SESSION_MAX_AGE
 
-COPY package*.json ./
-
-# Added --loglevel verbose so we can actually see what breaks
-RUN npm install --legacy-peer-deps --loglevel verbose
-
+# Copy EVERYTHING first (crucial so it grabs bun.lock)
 COPY . .
 
-RUN npm run build
+# Install dependencies using Bun
+RUN bun install
 
+# Build the project
+RUN bun run build
+
+# Phase 2: Serve with Nginx
 FROM nginx:1.28.2-alpine
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose the nginx port
 EXPOSE 4173
+
 CMD ["nginx", "-g", "daemon off;"]
