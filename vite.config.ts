@@ -63,7 +63,7 @@ export default defineConfig((_options) => {
        preview: { 
           host: true, 
           allowedHosts: true,
-        }
+        },
         build: {
             outDir: 'dist',
             emptyOutDir: true,
