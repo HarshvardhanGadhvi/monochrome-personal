@@ -2,9 +2,8 @@
 FROM node:20-alpine AS builder
 
 WORKDIR /app
-
-# Install system dependencies required for Bun
-RUN apk add --no-cache wget curl bash
+# Install system dependencies required for npm
+RUN apk add --no-cache python3 make g++
 
 # Accept build arguments for environment variables
 ARG AUTH_ENABLED
