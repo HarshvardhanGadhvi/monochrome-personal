@@ -1517,7 +1517,6 @@ export class Player {
                 let resolvedStreamInfo = await streamInfoPromise;
                 if (this.playbackSequence !== currentSequence) return;
 
-
                 streamUrl = resolvedStreamInfo.url;
                 this.currentStreamInfo = resolvedStreamInfo;
                 this.currentStreamProvider = resolvedStreamInfo.provider || null;
