@@ -40,3 +40,5 @@ jobs:
 
             - name: Run vitest
               run: bun run test:headless
+              env:
+                  CI: true
