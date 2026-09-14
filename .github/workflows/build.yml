@@ -35,4 +35,5 @@ jobs:
           single-commit: true
 
       - name: Call deploy hook
+        if: secrets.DEPLOY_HOOK_URL != ''
         run: curl -fsSL -X POST "${{ secrets.DEPLOY_HOOK_URL }}"
